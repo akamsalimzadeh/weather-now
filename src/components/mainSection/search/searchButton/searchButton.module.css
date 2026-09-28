@@ -1,0 +1,10 @@
+.searchButton__wrapper {
+    margin-bottom: 25px;
+}
+.searchButton {
+    width: var(--default-width);
+    height: var(--height-1);
+    border-radius: var(--radius-md);
+    background-color: var(--clr-search-display);
+    color: var(--clr-main-text);
+}

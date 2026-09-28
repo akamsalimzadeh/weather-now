@@ -12,16 +12,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--data-boxes);
+    background-color: var(--clr-data-boxes);
     width: 92px;
     height: 30px;
     font-size: 1rem;
-    color: var(--text-fields);
-    border-radius: var(--border-sm);
-    -webkit-border-radius: var(--border-sm);
-    -moz-border-radius: var(--border-sm);
-    -ms-border-radius: var(--border-sm);
-    -o-border-radius: var(--border-sm);
+    color: var(--clr-main-text);
+    border-radius: var(--radius-sm);
     padding: var(--pd-buttons);
 }
 .header__dropdownBtnSetting {
