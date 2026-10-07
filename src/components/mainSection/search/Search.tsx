@@ -1,14 +1,28 @@
 import SearchInput from "./searchInput/SearchInput"
-// import styles from "./search.module.css"
 import SearchButton from "./searchButton/SearchButton"
+import { useState } from "react"
 
-function Search () {
+type SearchProps = {
+    onSearch : (cityName : string) => void
+}
+
+function Search ({onSearch} : SearchProps) {
+
+    const [inputValue, setInputValue] = useState("")
+
+    const handleSubmit = (e : React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        const cityName = inputValue.trim()
+        
+        onSearch(cityName)
+    }
 
     return (
-        <div>
-            <SearchInput/>
+        <form onSubmit={handleSubmit}>
+            <SearchInput value={inputValue} onChange={setInputValue}/>
             <SearchButton/>
-        </div>
+        </form>
     )
 }
 

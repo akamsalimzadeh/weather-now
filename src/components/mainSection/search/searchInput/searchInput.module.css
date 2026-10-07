@@ -28,8 +28,8 @@
     background-color: var(--clr-data-boxes);
     border-radius: var(--radius-md);
     color: var(--clr-main-text);
+    padding-left: 50px;
 }
 .searchInput__box::placeholder {
-    padding-left: 50px;
     color: var(--clr-secondMain-text);
 }
