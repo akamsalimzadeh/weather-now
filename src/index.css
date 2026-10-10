@@ -21,6 +21,7 @@
 
   /*  Colors  */
   --clr-body-bg: hsl(243, 96%, 9%);
+  --clr-example: hsl(243, 23%, 24%);
   --clr-data-boxes: hsl(243, 23%, 30%);
   --clr-date: hsl(240, 6%, 70%);
   --clr-secondMain-text: hsl(250, 6%, 84%);
@@ -35,7 +36,7 @@
   /*  paddings  */
   --pd-buttons: 7px;
   --pd-hourlyforecast: 8px;
-  --pd-params-search: 9px;
+  --pd-params: 15px;
   --pd-display: 30px 15px 30px;
   --pd-dailyforecast: 4px 2px;
 
@@ -46,6 +47,7 @@
 
 body {
   background-color: var(--clr-body-bg);
+  color: var(--clr-main-text);
   font-family: var(--font-body);
   font-weight: var(--fw-light);
   font-size: 18px;
@@ -54,4 +56,5 @@ body {
 input,
 button {
   font-family: inherit;
+  color: inherit;
 }

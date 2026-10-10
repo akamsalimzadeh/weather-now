@@ -17,7 +17,7 @@ export async function getWeather(
     latitude: number,
     longitude: number
 ): Promise<WeatherResponse> {
-    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&timezone=auto`)
+    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,precipitation&timezone=auto`)
 
     if (!response.ok) {
         throw new Error("Failed to get weather forecast")

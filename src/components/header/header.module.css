@@ -16,9 +16,9 @@
     width: 92px;
     height: 30px;
     font-size: 1rem;
-    color: var(--clr-main-text);
     border-radius: var(--radius-sm);
     padding: var(--pd-buttons);
+    cursor: pointer;
 }
 .header__dropdownBtnSetting {
     width: 14px;

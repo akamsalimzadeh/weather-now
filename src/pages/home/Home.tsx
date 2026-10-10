@@ -23,7 +23,6 @@ function Home () {
         )
         
         setWeather(weatherData)
-        
     }
     
     return (

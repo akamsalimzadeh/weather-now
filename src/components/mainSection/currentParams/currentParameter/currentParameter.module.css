@@ -1,0 +1,23 @@
+.weatherParameter {
+    display: inline-block;
+    min-width: 156px;
+    background-color: var(--clr-example);
+    border: 1.4px solid var(--clr-data-boxes);
+    border-radius: var(--radius-md);
+    padding: var(--pd-params);
+}
+.weatherParameter__title {
+    color: var(--clr-secondMain-text);
+    font-size: 1rem;
+    font-weight: var(--fw-medium);
+    margin-bottom: 20px;
+}
+.weatherParameter__resultWrapper {
+    font-size: 2rem;
+}
+.weatherParameter__value {
+    margin-right: 8px;
+}
+.weatherParameter:nth-child(-n + 2) .weatherParameter__value {
+    margin-right: 0;
+}

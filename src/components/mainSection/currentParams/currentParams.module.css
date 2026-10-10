@@ -1,0 +1,6 @@
+.currentParams {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 17px;
+    justify-content: space-between;
+}

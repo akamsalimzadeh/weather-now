@@ -3,7 +3,6 @@
     text-align: center;
 }
 .searchInput__label {
-    color: var(--clr-main-text);
     font-family: var(--font-title);
     font-weight: var(--fw-bold);
     font-size: 3.2rem;
@@ -27,7 +26,6 @@
     height: var(--height-1);
     background-color: var(--clr-data-boxes);
     border-radius: var(--radius-md);
-    color: var(--clr-main-text);
     padding-left: 50px;
 }
 .searchInput__box::placeholder {

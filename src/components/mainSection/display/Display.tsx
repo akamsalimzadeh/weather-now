@@ -113,7 +113,8 @@ function Display({ cityLocationValues, cityCurrentWeather }: DisplayProps) {
             <div className={styles.display__currentForecastWrapper}>
                 <img className={styles.display__currentClimateIcon} src={currentWeatherIcon} alt={currentWeatherIconDescription} />
                 <span className={styles.display__currentClimateTemp}>
-                    {Math.round(cityCurrentWeather.current.temperature_2m)}°
+                    {Math.round(cityCurrentWeather.current.temperature_2m)}
+                    {cityCurrentWeather.current_units.temperature_2m.replace("°C", "°")}
                 </span>
             </div>
         </div>

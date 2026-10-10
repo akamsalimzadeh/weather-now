@@ -2,6 +2,7 @@ import styles from "./mainSection.module.css"
 import Search from "./search/Search"
 import Display from "./display/Display"
 import type { Location, WeatherResponse } from "../../types/weather"
+import CurrentParams from "./currentParams/CurrentParams"
 
 type MainSectionProps = {
     onSearch : (cityName : string) => void
@@ -15,6 +16,7 @@ function MainSection ({onSearch, cityLocationValues, cityCurrentWeather} : MainS
         <div className={styles.mainSection}>
             <Search onSearch={onSearch}/>
             <Display cityLocationValues={cityLocationValues} cityCurrentWeather={cityCurrentWeather}/>
+            <CurrentParams weatherParams={cityCurrentWeather}/>
         </div>
     )
 }
