@@ -8,15 +8,19 @@ type MainSectionProps = {
     onSearch : (cityName : string) => void
     cityLocationValues : Location | null
     cityCurrentWeather : WeatherResponse | null
+    loadingStatus : boolean
 }
 
-function MainSection ({onSearch, cityLocationValues, cityCurrentWeather} : MainSectionProps) {
+function MainSection ({onSearch, cityLocationValues, cityCurrentWeather, loadingStatus} : MainSectionProps) {
 
     return (
         <div className={styles.mainSection}>
-            <Search onSearch={onSearch}/>
-            <Display cityLocationValues={cityLocationValues} cityCurrentWeather={cityCurrentWeather}/>
-            <CurrentParams weatherParams={cityCurrentWeather}/>
+            <Search onSearch={onSearch} loadingStatus={loadingStatus} />
+            <Display 
+            cityLocationValues={cityLocationValues} 
+            cityCurrentWeather={cityCurrentWeather}
+            loadingStatus={loadingStatus} />
+            <CurrentParams weatherParams={cityCurrentWeather} />
         </div>
     )
 }

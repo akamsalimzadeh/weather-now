@@ -10,11 +10,13 @@ import partlyCloudyIcon from "./../../../assets/images/icon-partly-cloudy.webp"
 import rainIcon from "./../../../assets/images/icon-rain.webp"
 import snowIcon from "./../../../assets/images/icon-snow.webp"
 import stormIcon from "./../../../assets/images/icon-storm.webp"
+import DisplayLoading from "../../loading/displayLoading/DisplayLoading"
 
 
 type DisplayProps = {
     cityLocationValues: Location | null
     cityCurrentWeather: WeatherResponse | null
+    loadingStatus: boolean
 }
 
 function formatDate(dateString: string) {
@@ -27,7 +29,7 @@ function formatDate(dateString: string) {
     }).format(date)
 }
 
-function Display({ cityLocationValues, cityCurrentWeather }: DisplayProps) {
+function Display({ cityLocationValues, cityCurrentWeather, loadingStatus }: DisplayProps) {
 
     if (!cityLocationValues || !cityCurrentWeather) {
         return null
@@ -100,23 +102,29 @@ function Display({ cityLocationValues, cityCurrentWeather }: DisplayProps) {
     const currentWeatherIconDescription = currentWeatherCodeDescriptions[cityCurrentWeather.current.weather_code] ?? "Unknown"
 
     return (
-        <div className={styles.display}>
-            <div className={styles.display__locationWrapper}>
-                <h2 className={styles.display__location}>
-                    <span className={styles.display__city}> {cityLocationValues.name}, </span>
-                    <span className={styles.display__country}> {cityLocationValues.country} </span>
-                </h2>
-                <span className={styles.display__date}>
-                    {formatDate(cityCurrentWeather.current.time)}
-                </span>
-            </div>
-            <div className={styles.display__currentForecastWrapper}>
-                <img className={styles.display__currentClimateIcon} src={currentWeatherIcon} alt={currentWeatherIconDescription} />
-                <span className={styles.display__currentClimateTemp}>
-                    {Math.round(cityCurrentWeather.current.temperature_2m)}
-                    {cityCurrentWeather.current_units.temperature_2m.replace("°C", "°")}
-                </span>
-            </div>
+        <div className={styles.displayWrapper}>
+            {loadingStatus ?
+                <DisplayLoading/>
+                :
+                <div className={styles.display}>
+                    <div className={styles.display__locationWrapper}>
+                        <h2 className={styles.display__location}>
+                            <span className={styles.display__city}> {cityLocationValues.name}, </span>
+                            <span className={styles.display__country}> {cityLocationValues.country} </span>
+                        </h2>
+                        <span className={styles.display__date}>
+                            {formatDate(cityCurrentWeather.current.time)}
+                        </span>
+                    </div>
+                    <div className={styles.display__currentForecastWrapper}>
+                        <img className={styles.display__currentClimateIcon} src={currentWeatherIcon} alt={currentWeatherIconDescription} />
+                        <span className={styles.display__currentClimateTemp}>
+                            {Math.round(cityCurrentWeather.current.temperature_2m)}
+                            {cityCurrentWeather.current_units.temperature_2m.replace("°C", "°")}
+                        </span>
+                    </div>
+                </div>
+            }
         </div>
     )
 }

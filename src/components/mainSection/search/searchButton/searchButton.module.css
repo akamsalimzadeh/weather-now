@@ -1,6 +1,3 @@
-.searchButton__wrapper {
-    margin-bottom: 25px;
-}
 .searchButton {
     width: var(--default-width);
     height: var(--height-1);

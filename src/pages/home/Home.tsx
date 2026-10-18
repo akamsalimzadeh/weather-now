@@ -5,30 +5,43 @@ import Header from "../../components/header/Header"
 import MainSection from "../../components/mainSection/MainSection"
 
 
-function Home () {
+function Home() {
 
     const [locationInfo, setLocationInfo] = useState<Location | null>(null)
     const [weather, setWeather] = useState<WeatherResponse | null>(null)
-    
-    async function handleSearch (cityName : string) {
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
-        const locationData = await searchCity(cityName)
-        const getLocationData = locationData.results?.[0]
-        
-        setLocationInfo(getLocationData)
+    async function handleSearch(cityName: string) {
 
-        const weatherData = await getWeather(
-            getLocationData.latitude,
-            getLocationData.longitude
-        )
+        setIsLoading(true)
+        try {
+            const locationData = await searchCity(cityName)
+            const getLocationData = locationData.results?.[0]
+
+            setLocationInfo(getLocationData)
+
+            const weatherData = await getWeather(
+                getLocationData.latitude,
+                getLocationData.longitude
+            )
+
+            setWeather(weatherData)
+        }catch(error) {
+            console.log(error);
+        }finally {
+            setIsLoading(false)
+        }
         
-        setWeather(weatherData)
     }
-    
+
     return (
         <>
-            <Header/>
-            <MainSection onSearch={handleSearch} cityLocationValues={locationInfo} cityCurrentWeather={weather}/>
+            <Header />
+            <MainSection 
+            onSearch={handleSearch} 
+            cityLocationValues={locationInfo} 
+            cityCurrentWeather={weather}
+            loadingStatus={isLoading}/>
         </>
     )
 }

@@ -1,0 +1,51 @@
+.displayLoadingWrapper {
+  width: var(--default-width);
+  max-width: 400px;
+  min-height: 259.44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--clr-data-boxes);
+  border-radius: var(--radius-lg);
+  margin-bottom: 18px;
+}
+
+.loader {
+  --color: #fff;
+  --size: 1px;
+
+  display: flex;
+  justify-content: center;
+  gap: calc(12 * var(--size));
+  padding-block: calc(6 * var(--size));
+}
+
+.loader .loader__circle {
+  width: calc(12 * var(--size));
+  height: calc(12 * var(--size));
+  border-radius: 50%;
+  background: var(--color);
+  animation: loader-bounce 0.33s linear infinite alternate;
+}
+
+.loader .loader__circle:nth-child(2) {
+  animation-direction: alternate-reverse;
+}
+
+@keyframes loader-bounce {
+  from {
+    transform: translateY(calc(-6 * var(--size)));
+  }
+
+  to {
+    transform: translateY(calc(6 * var(--size)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader .loader__circle {
+    animation-duration: 1.2s;
+  }
+}
