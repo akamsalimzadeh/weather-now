@@ -4,9 +4,10 @@ import type { WeatherResponse } from "../../../../types/weather"
 type CurrentParameterProps = {
     title: string
     weatherParams: WeatherResponse | null
+    loadingStatus: boolean
 }
 
-function CurrentParameter({ weatherParams, title }: CurrentParameterProps) {
+function CurrentParameter({ weatherParams, title, loadingStatus }: CurrentParameterProps) {
 
     let value = 0
     let unit = ""
@@ -33,12 +34,16 @@ function CurrentParameter({ weatherParams, title }: CurrentParameterProps) {
                 {title}
             </h5>
             <div className={styles.weatherParameter__resultWrapper}>
-                <span className={styles.weatherParameter__value}>
-                    {Math.round(value)}
-                </span>
-                <span>
-                    {unit}
-                </span>
+                {loadingStatus ? "_" :
+                    <div>
+                        <span className={styles.weatherParameter__value}>
+                            {Math.round(value)}
+                        </span>
+                        <span>
+                            {unit}
+                        </span>
+                    </div>
+                }
             </div>
         </div>
     )

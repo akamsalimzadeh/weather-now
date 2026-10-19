@@ -20,7 +20,9 @@ function MainSection ({onSearch, cityLocationValues, cityCurrentWeather, loading
             cityLocationValues={cityLocationValues} 
             cityCurrentWeather={cityCurrentWeather}
             loadingStatus={loadingStatus} />
-            <CurrentParams weatherParams={cityCurrentWeather} />
+            <CurrentParams 
+            weatherParams={cityCurrentWeather}
+            loadingStatus={loadingStatus} />
         </div>
     )
 }
