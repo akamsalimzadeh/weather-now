@@ -10,6 +10,7 @@ function Home() {
     const [locationInfo, setLocationInfo] = useState<Location | null>(null)
     const [weather, setWeather] = useState<WeatherResponse | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [error, setError] = useState<string | null>(null)
 
     async function handleSearch(cityName: string) {
 
@@ -17,6 +18,11 @@ function Home() {
         try {
             const locationData = await searchCity(cityName)
             const getLocationData = locationData.results?.[0]
+
+            if (!locationData.results.length) {
+                setError("No search result found!")
+                return
+            }
 
             setLocationInfo(getLocationData)
 

@@ -7,9 +7,10 @@ import SearchLoading from "../../loading/searchLoading/SearchLoading"
 type SearchProps = {
     onSearch: (cityName: string) => void
     loadingStatus: boolean
+    error: "result-error" | "api-error" | null
 }
 
-function Search({ onSearch, loadingStatus }: SearchProps) {
+function Search({ onSearch, loadingStatus, error }: SearchProps) {
 
     const [inputValue, setInputValue] = useState("")
 
@@ -27,7 +28,10 @@ function Search({ onSearch, loadingStatus }: SearchProps) {
                 <SearchInput value={inputValue} onChange={setInputValue} />
                 <SearchButton />
             </form>
-            {loadingStatus && <SearchLoading/>}
+            {loadingStatus && <SearchLoading />}
+            {!loadingStatus && error === "result-error" && (
+                <span>No search result found!</span>
+            )}
         </div>
 
     )
