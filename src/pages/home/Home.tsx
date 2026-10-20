@@ -10,17 +10,18 @@ function Home() {
     const [locationInfo, setLocationInfo] = useState<Location | null>(null)
     const [weather, setWeather] = useState<WeatherResponse | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [error, setError] = useState<string | null>(null)
+    const [error, setError] = useState<"no-result" | "api-error" | null>(null)
 
     async function handleSearch(cityName: string) {
 
         setIsLoading(true)
+        setError(null)
         try {
             const locationData = await searchCity(cityName)
             const getLocationData = locationData.results?.[0]
 
-            if (!locationData.results.length) {
-                setError("No search result found!")
+            if (!getLocationData) {
+                setError("no-result")
                 return
             }
 
@@ -34,6 +35,7 @@ function Home() {
             setWeather(weatherData)
         }catch(error) {
             console.log(error);
+            setError("api-error")
         }finally {
             setIsLoading(false)
         }
@@ -47,7 +49,8 @@ function Home() {
             onSearch={handleSearch} 
             cityLocationValues={locationInfo} 
             cityCurrentWeather={weather}
-            loadingStatus={isLoading}/>
+            loadingStatus={isLoading}
+            error={error}/>
         </>
     )
 }

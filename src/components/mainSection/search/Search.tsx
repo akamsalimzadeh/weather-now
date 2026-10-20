@@ -7,7 +7,7 @@ import SearchLoading from "../../loading/searchLoading/SearchLoading"
 type SearchProps = {
     onSearch: (cityName: string) => void
     loadingStatus: boolean
-    error: "result-error" | "api-error" | null
+    error: "no-result" | "api-error" | null
 }
 
 function Search({ onSearch, loadingStatus, error }: SearchProps) {
@@ -24,13 +24,15 @@ function Search({ onSearch, loadingStatus, error }: SearchProps) {
 
     return (
         <div className={styles.search}>
-            <form className={styles.form} onSubmit={handleSubmit}>
+            <form className={styles.search__form} onSubmit={handleSubmit}>
                 <SearchInput value={inputValue} onChange={setInputValue} />
                 <SearchButton />
             </form>
             {loadingStatus && <SearchLoading />}
-            {!loadingStatus && error === "result-error" && (
-                <span>No search result found!</span>
+            {error === "no-result" && (
+                <div className={styles.search__noResultMessageWrapper}>
+                    <p className={styles.search__noResultMessage}>No search result found!</p>
+                </div>
             )}
         </div>
 

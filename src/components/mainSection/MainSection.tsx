@@ -9,25 +9,29 @@ type MainSectionProps = {
     cityLocationValues: Location | null
     cityCurrentWeather: WeatherResponse | null
     loadingStatus: boolean
-    error : "result-error" | "api-error" | null
+    error: "no-result" | "api-error" | null
 }
 
 function MainSection({ onSearch, cityLocationValues, cityCurrentWeather, loadingStatus, error }: MainSectionProps) {
 
     return (
         <div className={styles.mainSection}>
-            <Search 
-            onSearch={onSearch} 
+            <Search
+            onSearch={onSearch}
             loadingStatus={loadingStatus}
             error={error} />
-            <Display
-            cityLocationValues={cityLocationValues}
-            cityCurrentWeather={cityCurrentWeather}
-            loadingStatus={loadingStatus} />
-            {cityCurrentWeather && (
-                <CurrentParams
-                weatherParams={cityCurrentWeather}
-                loadingStatus={loadingStatus} />
+            {error !== "no-result" && (
+                <>
+                    <Display
+                        cityLocationValues={cityLocationValues}
+                        cityCurrentWeather={cityCurrentWeather}
+                        loadingStatus={loadingStatus} />
+                    {cityCurrentWeather && (
+                        <CurrentParams
+                            weatherParams={cityCurrentWeather}
+                            loadingStatus={loadingStatus} />
+                    )}
+                </>
             )}
         </div>
     )
