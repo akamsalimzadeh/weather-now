@@ -3,6 +3,7 @@ import Search from "./search/Search"
 import Display from "./display/Display"
 import type { Location, WeatherResponse } from "../../types/weather"
 import CurrentParams from "./currentParams/CurrentParams"
+import ApiError from "./apiError/ApiError"
 
 type MainSectionProps = {
     onSearch: (cityName: string) => void
@@ -10,16 +11,31 @@ type MainSectionProps = {
     cityCurrentWeather: WeatherResponse | null
     loadingStatus: boolean
     error: "no-result" | "api-error" | null
+    onRetry: () => void
 }
 
-function MainSection({ onSearch, cityLocationValues, cityCurrentWeather, loadingStatus, error }: MainSectionProps) {
+function MainSection({
+    onSearch,
+    cityLocationValues,
+    cityCurrentWeather,
+    loadingStatus,
+    error,
+    onRetry }: MainSectionProps) {
+
+    if (error === "api-error") {
+        return (
+            <div className={styles.mainSection}>
+                <ApiError onRetry={onRetry} />
+            </div>
+        )
+    }
 
     return (
         <div className={styles.mainSection}>
             <Search
-            onSearch={onSearch}
-            loadingStatus={loadingStatus}
-            error={error} />
+                onSearch={onSearch}
+                loadingStatus={loadingStatus}
+                error={error} />
             {error !== "no-result" && (
                 <>
                     <Display
