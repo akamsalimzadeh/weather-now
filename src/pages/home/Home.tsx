@@ -21,19 +21,18 @@ function Home() {
         try {
             const locationData = await searchCity(cityName)
             const getLocationData = locationData.results?.[0]
-
+            
             if (!getLocationData) {
                 setError("no-result")
                 return
             }
-
-            setLocationInfo(getLocationData)
 
             const weatherData = await getWeather(
                 getLocationData.latitude,
                 getLocationData.longitude
             )
 
+            setLocationInfo(getLocationData)
             setWeather(weatherData)
         }catch(error) {
             console.log(error);
@@ -56,7 +55,8 @@ function Home() {
             cityCurrentWeather={weather}
             loadingStatus={isLoading}
             error={error}
-            onRetry={handleApiError}/>
+            onRetry={handleApiError}
+            />
         </>
     )
 }

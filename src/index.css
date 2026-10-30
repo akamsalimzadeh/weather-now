@@ -38,7 +38,7 @@
   --pd-hourlyforecast: 8px;
   --pd-params: 15px;
   --pd-display: 30px 15px 30px;
-  --pd-dailyforecast: 4px 2px;
+  --pd-dailyforecast: 12px 8px;
 
   /*  components area   */
   --default-width: 100%;

@@ -9,7 +9,6 @@ export async function searchCity(city: string): Promise<GeocodingResponse> {
     }
 
     const cityNameData : GeocodingResponse = await response.json()
-
     return cityNameData
 }
 
@@ -17,13 +16,12 @@ export async function getWeather(
     latitude: number,
     longitude: number
 ): Promise<WeatherResponse> {
-    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,precipitation&timezone=auto`)
+    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&timezone=auto`)
 
     if (!response.ok) {
         throw new Error("Failed to get weather forecast")
     }
 
     const cityWeather : WeatherResponse = await response.json()
-
     return cityWeather
 }
